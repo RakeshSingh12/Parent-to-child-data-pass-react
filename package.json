@@ -15,7 +15,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "lint :precommit": "eslint $(git diff --name-only --cached --diff-filter=ACM --src/ | grep -vf .eslintigore | grep -e '.js$' -e '.tsx$' || echo 'src/app/index.js') --max-warnings 0",
+    "lint": "eslint --ext .js --ext .ts src/ --max-warnings 0" ,
+    "lint:fix": "eslint --ext .js --ext .ts src/ --max-warnings 0 --fix",
+    "lint-ci": "eslint src/ --ext '.js, .ts' --max-warnings 0 --format junit --output-file ./build/reports/lint/lint-report-app.xml"
+    
+    
   },
   "eslintConfig": {
     "extends": [
